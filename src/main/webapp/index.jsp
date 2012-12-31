@@ -7,13 +7,13 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <title>WebSocket in Java</title>
         <script language="javascript" type="text/javascript">
-            var wsUri = "ws://localhost:8080/WebSocket/hello";
+            var dice,name;
+            var wsUri = "ws://" + document.location.host + document.location.pathname + "hello";
             var websocket = new WebSocket(wsUri);
             websocket.onopen = function(evt) { onOpen(evt) };
             websocket.onmessage = function(evt) { onMessage(evt) };
             websocket.onerror = function(evt) { onError(evt) };
-            var dice;
-            var name;
+            
             function init() {
                 output = document.getElementById("output");
             }

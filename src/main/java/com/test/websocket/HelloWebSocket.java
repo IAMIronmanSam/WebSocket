@@ -8,18 +8,13 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import javax.websocket.DecodeException;
-import javax.websocket.Decoder;
 import javax.websocket.EncodeException;
-import javax.websocket.Encoder;
 import javax.websocket.EndpointFactory;
 import javax.websocket.Session;
 import javax.websocket.WebSocketClose;
 import javax.websocket.WebSocketEndpoint;
 import javax.websocket.WebSocketMessage;
 import javax.websocket.WebSocketOpen;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 
 /**
  *
@@ -28,8 +23,8 @@ import org.codehaus.jettison.json.JSONObject;
 
 
     @WebSocketEndpoint(value = "/hello",
-        encoders = {FigureEncoder.class},
-        decoders = {FigureDecoder.class},
+        encoders = {DataEncoder.class},
+        decoders = {DataDecoder.class},
         factory = com.test.websocket.DummyEndpointFactory.class)
    
 public class HelloWebSocket {
@@ -66,34 +61,4 @@ public class HelloWebSocket {
         }
     }
 
-    class FigureEncoder implements Encoder.Text<Gamedata> {
-    @Override
-    public String encode(Gamedata figure) throws EncodeException {
-        return figure.getJson().toString();
-    }
-}
-
-    class FigureDecoder implements Decoder.Text<Gamedata> {
-    @Override
-    public Gamedata decode(String string) throws DecodeException {
-        try {
-            System.out.println("decoding: " + string);
-            JSONObject jsonObject = new JSONObject(string);
-            return new Gamedata(jsonObject);
-        } catch (JSONException ex) {
-            throw new DecodeException("Error parsing JSON", ex.getMessage(), ex.fillInStackTrace());
-        }
-    }
-
-    @Override
-    public boolean willDecode(String string) {
-        try {
-            new JSONObject(string);
-            return true;
-        } catch (JSONException ex) {
-            ex.printStackTrace();
-            return false;
-        }
-    }
-    
-}
+  

@@ -3,29 +3,28 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Hello WebSocket</title>
-
+        
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<title>WebSocket in Java</title>
         <script language="javascript" type="text/javascript">
             var wsUri = "ws://localhost:8080/WebSocket/hello";
             var websocket = new WebSocket(wsUri);
             websocket.onopen = function(evt) { onOpen(evt) };
             websocket.onmessage = function(evt) { onMessage(evt) };
             websocket.onerror = function(evt) { onError(evt) };
-            var dice = Math.floor((Math.random()*6)+1);
-             
-             
-             var json = JSON.stringify({
-                    "name": nameField.value,
-                    "dice": dice
-                });
+            var dice;
+            var name;
             function init() {
                 output = document.getElementById("output");
             }
 
             function say_hello() {
+                name = $("#nameField").val();             
+                dice = Math.floor((Math.random()*6)+1);
+                var json={Name:name,Dice:dice};
                 websocket.send(json);
-                writeToScreen("SENT: " + JSON.Stringify(json));
-                   
+                writeToScreen("SENT: " +JSON.stringify(json));
+                console.log("Msg Sent"+JSON.stringify(json));    
             }
 
             function onOpen(evt) {
@@ -33,8 +32,10 @@
             }
 
             function onMessage(evt) {
+                console.log("Msg Recieving");
                  console.log(evt.data);
                 writeToScreen("RECEIVED: " + evt.data);
+                
             }
 
             function onError(evt) {
@@ -53,12 +54,12 @@
         </script>
     </head>
     <body>
-        <h1>Getting Started with WebSocket!!</h1>
+        <h1>WebSocket in Java!!</h1>
 
         <div style="text-align: center;">
             <form action=""> 
-                <input onclick="say_hello()" value="Roll" type="button"> 
-                <input id="nameField" name="name" value="WebSocket" type="text"><br>
+                <input onclick="say_hello()" value="Roll" type="button"/> 
+                <input id="nameField" placeholder="Name"type="text"/><br>
             </form>
         </div>
         <div id="output"></div>

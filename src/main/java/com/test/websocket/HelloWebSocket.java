@@ -5,7 +5,6 @@
 package com.test.websocket;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +25,7 @@ import org.codehaus.jettison.json.JSONObject;
  *
  * @author iarivu
  */
+
 
     @WebSocketEndpoint(value = "/hello",
         encoders = {FigureEncoder.class},

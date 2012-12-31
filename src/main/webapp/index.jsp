@@ -17,8 +17,11 @@
             }
 
             function say_hello() {
+                var dice = Math.floor((Math.random()*6)+1);
                 websocket.send(nameField.value);
+                websocket.send(dice);
                 writeToScreen("SENT: " + nameField.value);
+                writeToScreen("SENT: " + dice);
             }
 
             function onOpen(evt) {

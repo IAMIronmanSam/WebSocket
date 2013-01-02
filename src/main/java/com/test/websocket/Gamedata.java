@@ -11,12 +11,14 @@ import org.codehaus.jettison.json.JSONObject;
  */
 public class Gamedata {
     private JSONObject json;
+     org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(com.test.websocket.Gamedata.class);
 
     public Gamedata() {
     }
 
     public Gamedata(JSONObject json) {
         this.json = json;
+        logger.info ("In GameData"+json);
     }
     
     public JSONObject getJson() {
@@ -33,6 +35,7 @@ public class Gamedata {
             return json.toString(2);
         } catch (JSONException ex) {
             Logger.getLogger(Gamedata.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         return null;
     }

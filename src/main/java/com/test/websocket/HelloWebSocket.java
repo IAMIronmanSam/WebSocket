@@ -15,6 +15,8 @@ import javax.websocket.WebSocketClose;
 import javax.websocket.WebSocketEndpoint;
 import javax.websocket.WebSocketMessage;
 import javax.websocket.WebSocketOpen;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -28,23 +30,29 @@ import javax.websocket.WebSocketOpen;
         factory = com.test.websocket.DummyEndpointFactory.class)
    
 public class HelloWebSocket {
+        
+  Logger logger = Logger.getLogger(com.test.websocket.HelloWebSocket.class);
 
     Set<Session> user = Collections.synchronizedSet(new HashSet<Session>());
-
+    
     @WebSocketOpen
     public void onOpen(Session peer) {
         user.add(peer);
+        logger.info ("WebSocket Open.");
     }
-
+    public void doIt() {
+     logger.debug("Did it again!");
+   }
     @WebSocketClose
     public void onClose(Session peer) {
         user.remove(peer);
+        logger.info ("WebSocket Closed.");
     }
 
 
     @WebSocketMessage
     public void boradcast(Gamedata gd, Session session) throws IOException, EncodeException {
-        System.out.println("boradcast: " + gd);
+          logger.info ("Boradcast Data:"+ gd);
         for (Session peer : user) {
             if (!peer.equals(session)) {
                 peer.getRemote().sendObject(gd);

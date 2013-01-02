@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
 public class HelloWebSocket {
         
   Logger logger = Logger.getLogger(com.test.websocket.HelloWebSocket.class);
-
+    String [] UserData = new String[50];
     Set<Session> user = Collections.synchronizedSet(new HashSet<Session>());
     
     @WebSocketOpen
@@ -49,11 +49,14 @@ public class HelloWebSocket {
 
     @WebSocketMessage
     public void boradcast(Gamedata gd, Session session) throws IOException, EncodeException {
-          logger.info ("Boradcast Data:"+ gd);
+        //UserData[0]= gd ;
+          logger.info ("Boradcast Game Data:"+ gd);
         for (Session peer : user) {
             if (!peer.equals(session)) {
                 peer.getRemote().sendObject(gd);
             }
+            else
+            {logger.info ("User Error");}
         }
     }
 } 

@@ -15,7 +15,6 @@ import javax.websocket.WebSocketClose;
 import javax.websocket.WebSocketEndpoint;
 import javax.websocket.WebSocketMessage;
 import javax.websocket.WebSocketOpen;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -40,9 +39,7 @@ public class HelloWebSocket {
         user.add(peer);
         logger.info ("WebSocket Open.");
     }
-    public void doIt() {
-     logger.debug("Did it again!");
-   }
+    
     @WebSocketClose
     public void onClose(Session peer) {
         user.remove(peer);

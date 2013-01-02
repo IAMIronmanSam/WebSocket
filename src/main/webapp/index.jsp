@@ -21,10 +21,13 @@
             function say_hello() {
                 name = $("#nameField").val();             
                 dice = Math.floor((Math.random()*6)+1);
-                var json={Name:name,Dice:dice};
+                var json = JSON.stringify({
+                        "Name": name,
+                        "Dice": dice
+                    });
                 websocket.send(json);
-                writeToScreen("SENT: " +JSON.stringify(json));
-                console.log("Msg Sent"+JSON.stringify(json));    
+                writeToScreen("SENT: " +json);
+                console.log("Msg Sent"+json);    
             }
 
             function onOpen(evt) {

@@ -21,6 +21,7 @@
             function say_hello() {
                 name = $("#nameField").val();             
                 dice = Math.floor((Math.random()*6)+1);
+                
                 var json = JSON.stringify({
                         "Name": name,
                         "Dice": dice
@@ -28,6 +29,7 @@
                 websocket.send(json);
                 writeToScreen("SENT: " +json);
                 console.log("Msg Sent"+json);    
+                document.getElementById("diceField").value=dice;  
             }
 
             function onOpen(evt) {
@@ -63,8 +65,13 @@
 
         <div style="text-align: center;">
             <form action=""> 
-                <input onclick="say_hello()" value="Roll" type="button"/> 
-                <input id="nameField" placeholder="Name"type="text"/><br>
+                <label>Name:</label>
+                <input id="nameField" placeholder="Name"type="text"/><br><br>
+                <label>Dice Count:</label>
+                <input id="diceField" placeholder="Dice"type="text"/><br><br>
+                 <label>Position</label>
+                <input id="positionField" placeholder="Position"type="text"/><br><br>
+                <input onclick="say_hello()" value="Roll" type="button"/>
             </form>
         </div>
         <div id="output"></div>

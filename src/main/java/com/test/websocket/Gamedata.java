@@ -15,10 +15,17 @@ public class Gamedata {
 
     public Gamedata() {
     }
-
+String [] UserData = new String[50];
     public Gamedata(JSONObject json) {
         this.json = json;
         logger.info ("In GameData"+json);
+        logger.info ("GameData Length"+json.length());
+       /* for(int i=0;i<=json.length();i++)
+        {
+            UserData[i].equals(json);
+             logger.info ("UserData"+UserData[i]);
+        }
+       */
     }
     
     public JSONObject getJson() {

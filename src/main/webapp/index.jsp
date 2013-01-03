@@ -35,8 +35,10 @@
             }
 
             function onMessage(evt) {
+                var ab =evt.data;
                 console.log("Msg Recieving");
                  console.log(evt.data);
+                 console.log("Dice Move"+dice+dice);
                 writeToScreen("RECEIVED: " + evt.data);
                 
             }

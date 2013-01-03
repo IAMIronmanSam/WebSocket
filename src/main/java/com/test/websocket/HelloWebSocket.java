@@ -58,7 +58,7 @@ public class HelloWebSocket {
             else
             {logger.info ("User Error");}
         }
-    }
+    } 
 } 
 
   class DummyEndpointFactory implements EndpointFactory {

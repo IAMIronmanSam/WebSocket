@@ -19,13 +19,13 @@ String [] UserData = new String[50];
 
     public Gamedata(JSONObject json) throws JSONException {
         this.json = json;
-        String uName = (String) json.get("Name");
-        String uDice = (String) json.get("Dice");
+       // String uName = (String) json.get("Name");
+        //String uDice = (String) json.get("Dice");
         logger.info ("In GameData"+json);
         logger.info ("In GameData"+json);
         logger.info ("GameData Length"+json.length());
-        logger.info ("User Name:"+uName);
-        logger.info ("User Dice Count:"+uDice);
+        //logger.info ("User Name:"+uName);
+        //logger.info ("User Dice Count:"+uDice);
        
     }
     
